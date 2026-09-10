@@ -1,0 +1,17 @@
+{
+  "name": "SEMLINKO",
+  "short_name": "SEMLINKO",
+  "description": "Plateforme de mise en relation avec des prestataires et artisans locaux.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#000000",
+  "icons": [
+    {
+      "src": "https://semlinko-app2.onrender.com/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
