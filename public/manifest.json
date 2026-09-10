@@ -1,17 +1,21 @@
 {
-  "name": "SEMLINKO",
   "short_name": "SEMLINKO",
-  "description": "Plateforme de mise en relation avec des prestataires et artisans locaux.",
-  "start_url": "/",
-  "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#000000",
+  "name": "SEMLINKO",
+  "description": "Plateforme de mise en relation avec des prestataires et artisans locaux",
   "icons": [
     {
-      "src": "https://semlinko-app2.onrender.com/icons/icon-512x512.png",
-      "sizes": "512x512",
+      "src": "https://via.placeholder.com/192",
       "type": "image/png",
-      "purpose": "any maskable"
+      "sizes": "192x192"
+    },
+    {
+      "src": "https://via.placeholder.com/512",
+      "type": "image/png",
+      "sizes": "512x512"
     }
-  ]
+  ],
+  "start_url": "/",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "display": "standalone"
 }
