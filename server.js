@@ -5,6 +5,7 @@ const app = express();
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/manifest.json', (req, res) => {
+  res.setHeader('Content-Type', 'application/json');
   res.sendFile(path.join(__dirname, 'public', 'manifest.json'));
 });
 
