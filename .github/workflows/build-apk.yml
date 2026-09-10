@@ -10,26 +10,34 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
 
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 18
 
       - name: Install Bubblewrap
         run: npm install -g @bubblewrap/cli
 
-      - name: Initialize and Build TWA
+      - name: Initialize TWA Project
         run: |
-          bubblewrap init --manifest=https://semlinko-app2.onrender.com/manifest.json --directory=android-app
-          cd android-app
-          bubblewrap build
+          yes | bubblewrap init --manifest=https://semlinko-app2.onrender.com/manifest.json
 
-      - name: Upload APK & AAB
-        uses: actions/upload-artifact@v3
+      - name: Build APK & AAB
+        run: |
+          yes | bubblewrap build
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v4
         with:
           name: semlinko-android-build
           path: |
-            android-app/*.apk
-            android-app/*.aab
+            *.apk
+            *.aab
