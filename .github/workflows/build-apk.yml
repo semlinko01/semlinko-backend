@@ -26,12 +26,9 @@ jobs:
       - name: Install Bubblewrap
         run: npm install -g @bubblewrap/cli
 
-      - name: Generate TWA Manifest
+      - name: Generate TWA Manifest & Build
         run: |
           npx @bubblewrap/cli init --manifest=https://semlinko-app2.onrender.com/manifest.json --directory=twa-app
-
-      - name: Build TWA APK
-        run: |
           cd twa-app
           npx @bubblewrap/cli build --skip_checks
 
