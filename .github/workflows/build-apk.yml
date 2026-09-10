@@ -12,31 +12,15 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up Java 17
-        uses: actions/setup-java@v4
+      - name: Build Android APK/AAB via PWABuilder
+        uses: pwa-builder/pwa-action@v1.0
         with:
-          distribution: 'temurin'
-          java-version: '17'
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 18
-
-      - name: Install Bubblewrap
-        run: npm install -g @bubblewrap/cli
-
-      - name: Generate TWA Manifest & Build
-        run: |
-          npx @bubblewrap/cli init --manifest=https://semlinko-app2.onrender.com/manifest.json --directory=twa-app
-          cd twa-app
-          npx @bubblewrap/cli build --skip_checks
+          manifest-url: 'https://semlinko-app2.onrender.com/manifest.json'
+          output-dir: 'dist'
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v4
         if: always()
         with:
           name: semlinko-android-build
-          path: |
-            twa-app/*.apk
-            twa-app/*.aab
+          path: dist/*
