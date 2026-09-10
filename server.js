@@ -2,15 +2,23 @@ const express = require('express');
 const path = require('path');
 const app = express();
 
-// 1. Servir le manifest.json explicitement
+// Middleware CORS pour autoriser PWABuilder à lire le fichier
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  next();
+});
+
+// Route explicite avec bon type MIME pour manifest.json
 app.get('/manifest.json', (req, res) => {
+  res.type('application/manifest+json');
   res.sendFile(path.join(__dirname, 'public', 'manifest.json'));
 });
 
-// 2. Servir les autres fichiers statiques du dossier public
+// Servir le reste du dossier public
 app.use(express.static(path.join(__dirname, 'public')));
 
-// 3. Rediriger toutes les autres requêtes vers index.html
+// Catch-all route pour SPA
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
